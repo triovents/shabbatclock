@@ -1,0 +1,31 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+	#import <CoreData/CoreData.h>
+	#import <MagicalRecord/MagicalRecord.h>
+	#import <Parse/Parse.h>
+	#import "Configs.h"
+	#import <CoreData+MagicalRecord.h>
+	#import <MBProgressHUD/MBProgressHUD.h>
+	#import <SoundManager/SoundManager.h>
+	#import "AlarmManager.h"
+	#import <CWLSynthesizeSingleton/CWLSynthesizeSingleton.h>
+	#import "Constants.h"
+	#import "Common.h"
+
+#endif
+
+
+#define DLog(__FORMAT__, ...) NSLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

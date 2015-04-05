@@ -1,0 +1,38 @@
+ [
+  {
+  "unique_id": "1000",
+  "label": "Shacharit",
+  "soundFileName": "Honk.m4a",
+  "active": 0,
+  "date": 1340880090,
+  "duration": 30,
+  "repeat":[1,1,1,1,0,1,1]
+  },
+  {
+  "unique_id": "1001",
+  "label": "Mincha",
+  "soundFileName": "Police.m4a",
+  "active": 1,
+  "date": 13008340090,
+  "duration": 60,
+  "repeat":[1,0,0,0,0,0,0]
+  },
+  {
+  "unique_id": "1002",
+  "label": "Arvit",
+  "soundFileName": "Airhorn.m4a",
+  "active": 0,
+  "date": 1342810090,
+  "duration": 30,
+  "repeat":[0,0,0,0,0,0,1]
+  },
+  {
+  "unique_id": "1003",
+  "label": "Chazot",
+  "soundFileName": "Jazzy.m4a",
+  "active": 0,
+  "date": 13002347090,
+  "duration": 60,
+  "repeat":[0,0,0,1,0,0,0]
+  }
+]
