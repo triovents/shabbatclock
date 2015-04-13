@@ -122,7 +122,7 @@
 		_alarm.repeatWED = [NSNumber numberWithBool:NO];
 		_alarm.repeatTHU = [NSNumber numberWithBool:NO];
 		_alarm.repeatFRI = [NSNumber numberWithBool:NO];
-		_alarm.repeatSAT = [NSNumber numberWithBool:YES];
+		_alarm.repeatSAT = [NSNumber numberWithBool:NO];
 		
 		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDateComponents *comps = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:self.pickerDate.date];

@@ -88,54 +88,47 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(AlarmManager);
 	NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
 	offsetComponents.calendar = gregorian;
 	
-	// handling for 30 second UILocalNotification alert sound - add another notification for each 30 second interval
+	// setting UILocalNotification alert sound for 30 second interval
 	
-	for (int i = 0; i < [alarm.duration intValue]; i = i + 30) {
+    int repeatInterval = 0;
 		
-		int repeatInterval = 0;
+    // one time alarm
 		
-		// one time alarm
-		
-		if (theDay == 0) {
+    if (theDay == 0) {
 			
-			adjustedFinalDate = todayAlarmDate;
+        adjustedFinalDate = todayAlarmDate;
 			
-			if ([adjustedFinalDate earlierDate:[NSDate date]] == todayAlarmDate) {
-				[offsetComponents setDay:1];
-				adjustedFinalDate = [gregorian dateByAddingComponents:offsetComponents toDate:adjustedFinalDate options:0];
-			}
-		}
+        if ([adjustedFinalDate earlierDate:[NSDate date]] == todayAlarmDate) {
+            [offsetComponents setDay:1];
+            adjustedFinalDate = [gregorian dateByAddingComponents:offsetComponents toDate:adjustedFinalDate options:0];
+        }
+    }
 		
-		// repeating alarm
+    // repeating alarm
 		
-		else if (theDay > 0){
+    else if (theDay > 0){
 			
-			[componentsDifference setDay: theDay - [todayAlarmComponents weekday]];
-			adjustedFinalDate = [gregorian dateByAddingComponents:componentsDifference toDate:todayAlarmDate options:0];
+        [componentsDifference setDay: theDay - [todayAlarmComponents weekday]];
+        adjustedFinalDate = [gregorian dateByAddingComponents:componentsDifference toDate:todayAlarmDate options:0];
 			
-			repeatInterval = NSWeekCalendarUnit;
+        repeatInterval = NSWeekCalendarUnit;
 			
-			if ([todayAlarmDate earlierDate:adjustedFinalDate] != todayAlarmDate) {
-				[offsetComponents setWeek:1];
-				adjustedFinalDate = [gregorian dateByAddingComponents:offsetComponents toDate:adjustedFinalDate options:0];
-			}
-		}
+        if ([todayAlarmDate earlierDate:adjustedFinalDate] != todayAlarmDate) {
+            [offsetComponents setWeek:1];
+            adjustedFinalDate = [gregorian dateByAddingComponents:offsetComponents toDate:adjustedFinalDate options:0];
+        }
+    }
 		
-		NSDateComponents *thirtySecondsComponents = [[NSDateComponents alloc] init];
-		thirtySecondsComponents.calendar = gregorian;
-		[thirtySecondsComponents setSecond:i];
-		adjustedFinalDate = [gregorian dateByAddingComponents:thirtySecondsComponents toDate:adjustedFinalDate options:0];
-		
-		UILocalNotification *notification = [[UILocalNotification alloc] init];
-		notification.fireDate = adjustedFinalDate;
-		notification.alertBody = @"Shabbat Shalom";
-		notification.soundName = alarm.soundURL;
-		notification.timeZone = [NSTimeZone localTimeZone];
-		notification.repeatInterval = repeatInterval;
-		notification.userInfo = [NSDictionary dictionaryWithObject:alarm.unique_id forKey:@"unique_id"];
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = adjustedFinalDate;
+    notification.alertBody = @"Shabbat Shalom";
+    notification.soundName = alarm.soundURL;
+    notification.timeZone = [NSTimeZone localTimeZone];
+    notification.repeatInterval = repeatInterval;
+    notification.userInfo = [NSDictionary dictionaryWithObject:alarm.unique_id forKey:@"unique_id"];
 		[[UIApplication sharedApplication] scheduleLocalNotification:notification];
-	}
-	//DLog(@"[[UIApplication sharedApplication] scheduledLocalNotifications]: %@",[[UIApplication sharedApplication] scheduledLocalNotifications]);
+	
+    // DLog(@"[[UIApplication sharedApplication] scheduledLocalNotifications]: %@",[[UIApplication sharedApplication] scheduledLocalNotifications]);
 }
 
 
